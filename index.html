@@ -1,0 +1,215 @@
+<!-- // Author: Nigel Finley. August 2016. UT Bootcamp RPS-Multiplayer Assisgnment -->
+
+<!-- Look at using the bootstrap dashboard template or another similar one -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>RPS Multiplayer Game</title>
+    <!--Link to reset css template -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!--====== BOOTSTRAP ===== -->
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <!--====== BOOTSTRAP 4.0 ===== -->
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous"> -->
+
+
+    <!--====== FONTS ===== -->
+    <!--Import Google Icon Font-->
+    <!--   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!-- Font Awesome link which enable fonts and icons.  -->
+    <script src="https://use.fontawesome.com/9763ef17ba.js"></script>
+    <!--====== YOUR STYLE SHEET ===== -->
+    <!-- Your style sheet link -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+    <!--====== HTML CONTENT ===== -->
+    <!-- Starting Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="header">Welcome to Rock Paper, Scissors</h4>
+                </div>
+                <div class="modal-body text-center">
+                     <!-- <p class="text-center"> Type Your Name To Begin</p> -->
+                    <input type="text" id="playerName" placeholder="Enter Your Name" value="Enter Your Name">
+                   
+                </div>
+                <div class="modal-footer">
+                    <!-- Buttons on Modal -->
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary block-center" onclick="" id="modalButton" data-dismiss="modal">Begin Play!</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <div id='wrap'>
+        <div class="container-fluid">
+            <!-- Jumbotron Header -->
+            <div class="jumbotron text-center">
+                <h1>Multiplayer Rock Paper Scissors </h1>
+                <img src="assets/images/gamepic.jpeg" class="headerPic">
+
+                <!-- This will probably have to be dynamically generated -->
+             
+                    <!-- <div class="form-group">
+                        <div class="col-sm-12 col-md-4 col-lg-4"></div>
+
+                        <div class="col-sm-12 col-md-2 col-lg-2">
+                       
+                            <input class="form-control" type="text" id="playerName">
+                        </div> -->
+
+                <!-- The start send button -->
+                        <!-- <div class="col-sm-12 col-md-1 col-lg-1">
+                            <button for="playerName" class="btn text-left" id="startButton">Start</button>
+                        </div>
+                        <div class="col-sm-12 col-md-5 col-lg-5"></div>
+
+                    </div> -->
+            
+            </div>
+            <!-- ROW 1: to house the game instructions, like assignment of players and 'It's your turn -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <div class="panel panel-primary">
+                        <div class="panel-body instructions">
+                            <!-- Text will be automatically Generated here depending on the gameplay status -->
+                          <!--   <h3> Hello Nigel. You are Player 1</h3> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ROW 2: GAME PLAY AREA. It will have three seperate columns one for each player and the middle to display who wins!! -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <div class="panel panel-primary">
+                        <div class="panel-body gamePlay">
+                            <div class="form-group">
+                                <!-- Player 1 section  -->
+                                <div class="col-sm-12 col-md-4 col-lg-4" id="player1">
+
+                                    <!-- These buttons will need to be dynamically updated only when the player can choose -->
+                                    <div id="nameOne" class= "playerHeader playerSelection"> Waiting for player to join! </div>
+                                    <button type="button" id="rockOne" data-name = "rock" class="btn"><img src="assets/images/rock.jpg"></button>
+                                    <button type="button" id="paperOne" data-name = "paper" class="btn"><img src="assets/images/paper.jpg"></button>
+                                    <button type="button" id="scissorsOne" data-name = "scissors" class="btn"> <img src="assets/images/scissors.jpg"></button>
+                                    
+                                    <!-- Dynamicaly update the wins and losses  -->
+                                    <div id="p1Score" class="scoreboard"><h4> Wins: 0   Losses: 0 </h4></div>
+                                </div>
+                                <!-- Middle game play section -->
+                                <div class="col-sm-12 col-md-4 col-lg-4 gameStatus">
+                                   <!-- Dynamically update info here -->
+                                </div>
+                                <!-- Player 2 section  -->
+                                <div class="col-sm-12 col-md-4 col-lg-4" id="player2">
+                                    <div id="nameTwo" class= "playerHeader playerSelection"> Waiting for player to join! </div>
+                                    <button type="button" id="rockTwo" data-name = "rock" class="btn"><img src="assets/images/rock.jpg"></button>
+                                    <button type="button" id="paperTwo" data-name = "paper" class="btn"><img src="assets/images/paper.jpg"></button>
+                                    <button type="button" id="scissorsTwo" data-name = "scissors" class="btn"> <img src="assets/images/scissors.jpg"></button>
+
+                                    <div id="p2Score" class="scoreboard"><h4> Wins: 0   Losses: 0 </h4></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  ROW 3: TO HOUSE THE CHAT BOX -->
+ <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                  <textarea placeholder="Remember play nice!" cols="50" rows="5" id="chatBox"> </textarea>
+                  </div>
+
+ </div>
+           
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="form-group">
+                            <!-- This is the chat area -->
+                                
+                                <div class="col-sm-12 col-md-3 col-lg-3"></div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                
+                                <input class="form-control" type="text" id="chatText">
+                            <!-- The Chat send button -->
+                                <button for="chatText" class="btn" id="sendText">Poke Fun</button>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3"></div>
+
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    <div id="push"> </div>
+    </div>
+    <div id="footer">
+    </div>
+    <!-- ============================================== -->
+    <!-- Templating  -->
+    <!--     <script type="text/template" id="characterTmpl">
+        <div class="characterContainer characterClick <%= background %>" data-character-index="<%= index %>">
+            <p><%= character.name %></p>
+            <img src="<%= character.visual %>">
+            <p>HP: <%= character.healthPoints %></p>
+        </div>
+    </script> -->
+    <!-- =========FIREBASE ============= -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <!-- ============================================================ -->
+    <!--====== BOOTSTRAP ===== -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+ <!--====== BOOTSTRAP JAVASCRIPT 4.0 ===== -->
+  <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script> -->
+
+    <!--====== UNDERSCORE===== -->
+    <!-- underscore JS library CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!--====== YOUR LOCAL JS FILE ===== -->
+    <!-- link to user JS file. Name will change -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <!--====== BACKSTRETCH ===== -->
+    <!-- link to js file that supports the backstretch piece -->
+    <script type="text/javascript" src="assets/javascript/javascript.js"></script>
+    <!-- Creates a background with scrolling images -->
+    <!--    <script type="text/javascript">
+        $(document).ready(function() {
+        $.backstretch('assets/images/bg-1.png');
+    });
+        </script> -->
+</body>
+
+</html>
